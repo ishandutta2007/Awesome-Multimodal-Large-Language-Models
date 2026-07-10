@@ -1,5 +1,7 @@
-# Awesome-Multimodal-Large-Language-Models
-## Multimodal Large Language Models (MLLMs): History, Progression, Variants, & Applications
+![Banner](assets/banner.svg)
+
+# 🚀 Awesome-Multimodal-Large-Language-Models
+## 🧠 Multimodal Large Language Models (MLLMs): History, Progression, Variants, & Applications
 
 **Multimodal Large Language Models (MLLMs)**—alternatively designated as Vision-Language Models (VLMs), Omni-Models, or Cross-Modal Foundation Decoders—represent an advanced paradigm in artificial intelligence that scales the auto-regressive context windows of foundational language architectures to ingest, comprehend, and synthesize diverse data modalities (such as text, images, video tokens, and audio waveforms) within a single unified workspace [INDEX: 1, 10]. 
 
@@ -7,7 +9,7 @@ Traditional language systems operate exclusively on text string parameters, leav
 
 ---
 
-## 1. The Macro Chronological Evolution
+## 🕰️ 1. The Macro Chronological Evolution
 
 The implementation of cross-sensory model scaling has transitioned from fragmented multi-model pipelines to dual-tower contrastive mappings, frozen convolutional alignment adapters, and modern native unified autoregressive token transformers.
 
@@ -29,7 +31,7 @@ flowchart LR
 
 ---
 
-## 2. Core Functional & Architectural Variants
+## 🏗️ 2. Core Functional & Architectural Variants
 
 MLLM architectures are strictly categorized based on the exact routing topologies they use to integrate visual patch matrices alongside linguistic text tokens.
 
@@ -43,7 +45,7 @@ MLLM architectures are strictly categorized based on the exact routing topologie
 
 ---
 
-## 3. The Multi-Modal Ingestion & Caching Matrix
+## ⚡ 3. The Multi-Modal Ingestion & Caching Matrix
 
 To process high-resolution visual patch tokens alongside massive text contexts without triggering cluster stalls, modern MLLM serving nodes deploy hardware-fused caching layers [INDEX: 22].
 
@@ -64,7 +66,7 @@ flowchart TB
 
 ---
 
-## 4. Production Engineering Challenges & Hardening Mitigations
+## 🛡️ 4. Production Engineering Challenges & Hardening Mitigations
 
 Deploying and scaling complex multi-modal foundation loops across commercial cloud infrastructure networks introduces severe attention memory bottlenecks and security vulnerabilities [INDEX: 22].
 
@@ -76,7 +78,7 @@ Deploying and scaling complex multi-modal foundation loops across commercial clo
 
 ---
 
-## 5. Frontier Real-World AI Infrastructure Applications
+## 🌍 5. Frontier Real-World AI Infrastructure Applications
 
 | Application | Details | Year | Paper Link |
 | --- | --- | --- | --- |
@@ -87,7 +89,7 @@ Deploying and scaling complex multi-modal foundation loops across commercial clo
 
 ---
 
-## References
+## 📚 References
 1. Vaswani, A., et al. (2017). Attention is all you need: Scalable foundational transformer matrix blocks. *Advances in Neural Information Processing Systems (NeurIPS)*, 30 [INDEX: 1].
 2. Dosovitskiy, A., et al. (2020). An image is worth 16x16 words: Transformers for image recognition at scale via patchified linear embedding frontends. *arXiv preprint arXiv:2010.11929* [INDEX: 5].
 3. Radford, A., et al. (2021). Learning transferable visual models from natural language supervision via contrastive dual-tower alignments. *International Conference on Machine Learning (ICML)* [INDEX: 10].
