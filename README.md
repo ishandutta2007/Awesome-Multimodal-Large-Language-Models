@@ -1,6 +1,14 @@
 ![Banner](assets/banner.svg)
 
 # 🚀 Awesome-Multimodal-Large-Language-Models
+<p align="center">
+<a href="https://github.com/ishandutta2007/Awesome-Awesome-Awesome"><img src="https://img.shields.io/badge/Awesome-%E2%9C%94-blueviolet?style=flat-square&logo=github" alt="Awesome"/></a>
+<a href="https://discord.gg/jc4xtF58Ve"><img src="https://img.shields.io/badge/Discord-5865F2?style=for-the-badge&logo=discord&logoColor=white" alt="Discord" /></a>
+</p>
+
+
+*A curated list of awesome Multimodal Large Language Models (MLLMs), Vision-Language Models (VLMs), Omni-Models, and AI architectures integrating text, vision, and audio.*
+
 ## 🧠 Multimodal Large Language Models (MLLMs): History, Progression, Variants, & Applications
 
 **Multimodal Large Language Models (MLLMs)**—alternatively designated as Vision-Language Models (VLMs), Omni-Models, or Cross-Modal Foundation Decoders—represent an advanced paradigm in artificial intelligence that scales the auto-regressive context windows of foundational language architectures to ingest, comprehend, and synthesize diverse data modalities (such as text, images, video tokens, and audio waveforms) within a single unified workspace [INDEX: 1, 10]. 
