@@ -19,18 +19,13 @@ flowchart LR
     C --> D["Unified Omni Patches (GPT-4o/Gemini, Present)<br/>(Omnidirectional Shared Token Workspaces)"]
 ```
 
-*   **The Fragmented Multi-Model Pipeline Era (Traditional Baselines, Pre-2021)**
-    *   *Concept:* The early engineering standard. Modalities were treated as isolated data islands. To build a system capable of answering questions about an audio clip or an image, developers chained separate models sequentially: an Automatic Speech Recognition (ASR) model transcribed audio to text, a convolutional network extracted discrete object label strings, and a language model read the final concatenated text payload.
-    *   *Limitation:* Catastrophic error cascades and high processing latency, as important emotional textures or spatial geometric coordinates were fully lost during intermediate text transcription steps.
-*   **The Dual-Tower Contrastive Alignment Era (CLIP, Radford et al., 2021)**
-    *   *Concept:* Sparked the modern multi-modal foundation boom by proving that distinct modalities could share a single continuous vector space [INDEX: 10]. **Contrastive Language-Image Pre-training (CLIP)** paired an independent vision encoder with a text transformer [INDEX: 10], using symmetric InfoNCE loss functions to maximize the vector dot product of matched text-image pairs while aggressively repelling mismatched pairs [INDEX: 10].
-    *   *Limitation:* Strictly bounded to zero-shot classification and similarity ranking [INDEX: 10]; the dual towers could not generate text, compose scenes, or follow multi-turn instructions.
-*   **The Connected Cross-Attention Adapter Era (Flamingo / LLaVA, ~2022–2023)**
-    *   *Concept:* Injected visual perception directly into generative text decoding parameter lines. Models like DeepMind's Flamingo and LLaVA combined a pre-trained, frozen vision tower (ViT/CLIP) with an autoregressive language decoder [INDEX: 1, 10]. They introduced linear projection layers (**MLP Adapters**) or gated cross-attention blocks to map visual hidden states into virtual text tokens.
-    *   *Significance:* Unlocked open-vocabulary visual question answering and image-to-text generation, letting users converse with pixel fields for the first time.
-*   **The Unified Omni Autoregressive Token Era (Present)**
-    *   *Concept:* The current modern state-of-the-art foundation infrastructure standard seen in frontier systems like GPT-4o, Gemini 1.5, and Chameleon [INDEX: 1]. It fully discards multi-model adapter clipping, treating multi-modal synthesis as a monolithic sequence task [INDEX: 1].
-    *   *Significance:* Raw graphics are sliced into 2D structural pixel patches [INDEX: 5], text is string-tokenized, and audio is snapped to integer codebooks. All elements are flattened into a single, unified shared sequence processed natively by a deep **Diffusion or Autoregressive Transformer** [INDEX: 1, 4]. Gating constraints operate as standard causal masks, allowing text to predict pixels or audio waves symmetrically without intermediate multi-model alignment lag [INDEX: 1].
+| Era / Concept | Description | Year | Paper Link |
+| --- | --- | --- | --- |
+| [The Fragmented Multi-Model Pipeline Era](pages/fragmented-pipeline.md) | The early engineering standard where modalities were treated as isolated data islands. Chained models sequentially. | Pre-2021 | N/A |
+| [The Dual-Tower Contrastive Alignment Era (CLIP)](pages/dual-tower-clip.md) | Sparked the modern multi-modal foundation boom by proving distinct modalities could share a single continuous vector space. | 2021 | [Radford et al., 2021](https://arxiv.org/abs/2103.00020) |
+| [The Connected Cross-Attention Adapter Era](pages/cross-attention-flamingo.md) | Injected visual perception directly into generative text decoding parameter lines (Flamingo / LLaVA). | 2022 | [Alayrac et al., 2022](https://arxiv.org/abs/2204.14198) |
+| [The Unified Omni Autoregressive Token Era](pages/unified-omni.md) | The current modern state-of-the-art foundation infrastructure standard seen in frontier systems. | 2023-Present | [OpenAI GPT-4o / Gemini](https://arxiv.org/abs/2312.11805) |
+
 
 ---
 
@@ -38,20 +33,13 @@ flowchart LR
 
 MLLM architectures are strictly categorized based on the exact routing topologies they use to integrate visual patch matrices alongside linguistic text tokens.
 
-- ### A. MLP-Adapter Architectures (Projection-Aligned)
-	*   **Mechanism:** Employs a simple, low-rank Multi-Layer Perceptron (MLP) or linear matrix to scale and project the terminal hidden states of a vision encoder directly into the text embedding space of a language decoder. The vision and language towers remain structurally isolated, communicating exclusively at the entryway layer.
-	*   **Examples:** LLaVA, CogVLM.
+| Variant | Mechanism / Description | Year | Paper Link |
+| --- | --- | --- | --- |
+| [MLP-Adapter Architectures](pages/mlp-adapter.md) | Employs a simple, low-rank Multi-Layer Perceptron (MLP) or linear matrix to scale and project the terminal hidden states. | 2023 | [LLaVA Paper](https://arxiv.org/abs/2304.08485) |
+| [Perceptual Cross-Attention Bottlenecks](pages/perceptual-bottlenecks.md) | Decouples raw pixel token dimensions from the language model's hidden layers using cross-attention bottlenecks. | 2021 | [Jaegle et al., 2021](https://arxiv.org/abs/2103.03206) |
+| [Unified Native Transformers](pages/unified-native.md) | Completely merges data modalities at step zero. A single, unified multi-modal tokenizer. | 2024 | [Chameleon Team, 2024](https://arxiv.org/abs/2405.09818) |
+| [Sparsely Routed Multi-Modal MoE](pages/sparse-moe.md) | Combines multi-modal sequence ingestion with Mixture-of-Experts (MoE) layers. | 2024 | [DeepSeek-V3, 2024](https://arxiv.org/abs/2412.19437) |
 
-- ### B. Perceptual Cross-Attention Bottlenecks (Workspace-Routed)
-	*   **Mechanism:** Decouples raw pixel token dimensions from the language model's hidden layers [INDEX: 1]. It passes massive video or image patch streams through a small, fixed-size latent bottleneck array via cross-attention mechanisms (e.g., Perceiver or Flamingo Perconnector blocks) [INDEX: 1, 10].
-	*   **Pros:** Slashes the computational complexity of handling ultra-long high-resolution visual frames down to true linear scaling bounds ($O(N)$), acting as an efficient cross-sensory data broker [INDEX: 1].
-
-- ### C. Unified Native Transformers (Token-Fused Omni Models)
-	*   **Mechanism:** Completely merges data modalities at step zero [INDEX: 1]. A single, unified multi-modal tokenizer maps text, image patches [INDEX: 5], and speech waveforms into a single continuous sequence processed by a single, monolithic transformer backbone [INDEX: 1].
-	*   **Examples:** GPT-4o, Gemini 1.5, Chameleon.
-
-- ### D. Sparsely Routed Multi-Modal MoE (Sparse Omni-Transformers)
-	*   **Mechanism:** Combines multi-modal sequence ingestion with **Mixture-of-Experts (MoE)** layers [INDEX: 15]. It splits deep internal layer columns into multiple independent parallel expert blocks [INDEX: 15]. A fast routing gate dispatches tokens selectively to specialized vision or text experts, keeping active inference processing costs small while parameter capacities expand [INDEX: 15].
 
 ---
 
@@ -68,10 +56,11 @@ flowchart TB
     G --> D
 ```
 
-*   **Linear Patch Embedding Layers (ViT Frontends)**
-    *   *Profile:* Slashes convolutional scaling constraints [INDEX: 5]. The module applies a 2D convolution with a kernel size and stride exactly matching the target patch size (typically $14 \times 14$ or $16 \times 16$) [INDEX: 5]. This flattens local spatial pixel regions into a sequential array of dense vector channels, projecting image blocks like text words [INDEX: 5].
-*   **Multi-Head Latent Attention (MLA Cache Compression)**
-    *   *Profile:* Slashes inference VRAM overheads [INDEX: 18]. Autoregressive token decoding requires caching context vectors to prevent redundant math [INDEX: 22]. MLA mathematically compresses these cache dimensions down into a low-rank latent vector *before* memory storage occurs, slashing total cache footprints by up to 93% [INDEX: 18].
+| Layer / Concept | Profile | Year | Paper Link |
+| --- | --- | --- | --- |
+| [Linear Patch Embedding Layers](pages/linear-patch.md) | Slashes convolutional scaling constraints by applying a 2D convolution flattening local spatial pixel regions. | 2020 | [Dosovitskiy et al., 2020](https://arxiv.org/abs/2010.11929) |
+| [Multi-Head Latent Attention](pages/mla-cache.md) | Slashes inference VRAM overheads by compressing cache dimensions down into a low-rank latent vector. | 2024 | [DeepSeek-V2, 2024](https://arxiv.org/abs/2405.04434) |
+
 
 ---
 
@@ -79,24 +68,22 @@ flowchart TB
 
 Deploying and scaling complex multi-modal foundation loops across commercial cloud infrastructure networks introduces severe attention memory bottlenecks and security vulnerabilities [INDEX: 22].
 
-- ### The Quadratic Token Inflation and VRAM Explosion Wall
-	*   **The Problem:** Slicing high-resolution visual frames or multi-second video clips into fine 2D patches generates thousands of active tokens per input (e.g., a single HD image can easily explode into 1,024+ tokens) [INDEX: 5]. Passing these alongside long text prompts causes the self-attention matrix to hit a quadratic ($O(N^2)$) memory footprint wall, saturating VRAM and crashing serving concurrency [INDEX: 1, 22].
-	*   **Mitigation:** Implementing **FlashAttention hardware-aware register fusion**, combined with **Grouped-Query Attention (GQA)** or multi-head latent attention (Core MLA blocks) to compress cached parameters into low-rank fields [INDEX: 18, 22].
+| Challenge | Problem & Mitigation | Year | Paper Link |
+| --- | --- | --- | --- |
+| [The Quadratic Token Inflation Wall](pages/quadratic-inflation.md) | Passing patches alongside long text prompts causes the self-attention matrix to hit a quadratic memory footprint wall. | 2017 | [Vaswani et al., 2017](https://arxiv.org/abs/1706.03762) |
+| [Multi-Modal Indirect Prompt Injection](pages/indirect-prompt-injection.md) | Unified MLLMs process pixels and text tokens inside a shared attention space, creating vulnerabilities to hidden text commands. | 2023 | [Bagdasaryan et al., 2023](https://arxiv.org/abs/2307.10490) |
 
-- ### The Multi-Modal Cross-Context Indirect Prompt Injection Threat
-	*   **The Problem:** Because unified MLLMs process pixels and text tokens inside a shared attention space, they are highly vulnerable to **Indirect Prompt Injection** [INDEX: 1, 19]. An attacker can hide low-contrast, blurred text commands inside an image layer; when the model processes the graphic to summarize it, the visual tokens override the text system guardrails, hijacking the model's function-calling privileges to exfiltrate private corporate databases silently [INDEX: 12, 19].
-	*   **Mitigation:** Bypassing surface-level prompt rules entirely by deploying overcomplete **Sparse Autoencoders (SAEs)** [INDEX: 2]. SAEs isolate abstract conceptual directions into distinct monosemantic feature channels [INDEX: 2], letting trust and safety modules precisely inject negative activation steering vectors at runtime to neutralize authentic hazards without inducing collateral feature degradation [INDEX: 2].
 
 ---
 
 ## 5. Frontier Real-World AI Infrastructure Applications
 
-*   **Spatio-Temporal Video Generative Flow-Matching Simulators**
-    *   *Application:* Drives next-generation advanced cinematic pre-visualization and industrial simulation loops [INDEX: 4]. Spatio-temporal foundation transformers treat video frames as 3D token cubes; the model removes noise across these cubes concurrently, predicting straight-line trajectories to generate physically consistent multi-second video animations smoothly [INDEX: 4].
-*   **Autonomous Vehicle Bird's-Eye-View (BEV) Spatial Actuation**
-    *   *Application:* Coordinates real-time perception and navigation for advanced self-driving automotive fleets [INDEX: 1]. High-speed multi-modal vision-language-action (VLA) foundation layers parse streaming cameras and LiDAR frames concurrently, projecting flat pixel dimensions directly into a unified 3D Bird's-Eye-View vector grid to execute dynamic path routing and torque adjustments safely.
-*   **High-Resolution Clinical Diagnostic Volumetric Tracking (MedTech)**
-    *   *Application:* Ingests massive multi-megapixel data matrices (such as MRIs, CT volumes, and digital pathology slides) alongside conversational electronic health records (EHR) [INDEX: 1]. MLLM attention layers fuse visual anomaly maps with patient text records, automating pixel-level tissue tracking to verify microscopic tumor boundaries with sub-millimeter precision [INDEX: 1].
+| Application | Details | Year | Paper Link |
+| --- | --- | --- | --- |
+| [Spatio-Temporal Video Generative Flow-Matching](pages/spatio-temporal-video.md) | Drives next-generation advanced cinematic pre-visualization and industrial simulation loops. | 2024 | [Sora / OpenAI, 2024](https://openai.com/sora) |
+| [Autonomous Vehicle Bird's-Eye-View Actuation](pages/autonomous-bev.md) | Coordinates real-time perception and navigation for advanced self-driving automotive fleets. | 2022 | [BEVFormer, 2022](https://arxiv.org/abs/2203.17270) |
+| [High-Resolution Clinical Diagnostic Tracking](pages/clinical-diagnostic.md) | Ingests massive multi-megapixel data matrices alongside conversational electronic health records. | 2023 | [Moor et al., 2023](https://arxiv.org/abs/2303.13375) |
+
 
 ---
 
