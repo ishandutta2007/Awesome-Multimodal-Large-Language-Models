@@ -13,7 +13,10 @@ The implementation of cross-sensory model scaling has transitioned from fragment
 
 
 ```mermaid
-[Fragmented Multi-Model Systems] ───> [Dual-Tower Alignments (CLIP, 2021)] ───> [Cross-Modal Cross-Attentions (Flamingo, 2022)] ───> [Unified Omni Patches (GPT-4o/Gemini, Present)](Heavy Text-Transcription Latency)      (Static Cosine Similarity Hyperplanes)         (Frozen Vision Towers + Linear Adapters)       (Omnidirectional Shared Token Workspaces)
+flowchart LR
+    A["Fragmented Multi-Model Systems<br/>(Heavy Text-Transcription Latency)"] --> B["Dual-Tower Alignments (CLIP, 2021)<br/>(Static Cosine Similarity Hyperplanes)"]
+    B --> C["Cross-Modal Cross-Attentions (Flamingo, 2022)<br/>(Frozen Vision Towers + Linear Adapters)"]
+    C --> D["Unified Omni Patches (GPT-4o/Gemini, Present)<br/>(Omnidirectional Shared Token Workspaces)"]
 ```
 
 *   **The Fragmented Multi-Model Pipeline Era (Traditional Baselines, Pre-2021)**
@@ -56,8 +59,13 @@ MLLM architectures are strictly categorized based on the exact routing topologie
 
 To process high-resolution visual patch tokens alongside massive text contexts without triggering cluster stalls, modern MLLM serving nodes deploy hardware-fused caching layers [INDEX: 22].
 
+**Omni Autoregressive Sequence Graph**
 ```mermaid
-Omni Autoregressive Sequence Graph[Image Patch Grid (16x16)] ───> [Linear Projection Head] ───> [Visual Token Matrix Slots] ──┐├──> [Unified Denoising / Causal Transformer][Natural Language Input] ────> [Byte-Pair Encoder Table] ───> [Linguistic Token Matrix] ───┘
+flowchart TB
+    A["Image Patch Grid (16x16)"] --> B["Linear Projection Head"] --> C["Visual Token Matrix Slots"]
+    C --> D["Unified Denoising / Causal Transformer"]
+    E["Natural Language Input"] --> F["Byte-Pair Encoder Table"] --> G["Linguistic Token Matrix"]
+    G --> D
 ```
 
 *   **Linear Patch Embedding Layers (ViT Frontends)**
